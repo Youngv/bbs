@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   def create
   	user = User.find_by_username(params[:username])
   	if user and user.authenticate(params[:password])
-  		session[:user_id] = user_id
+  		session[:user_id] = user.id
   		redirect_to users_url
   	else
   		redirect_to signin_url, alert: "password wrong"

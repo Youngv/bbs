@@ -3,7 +3,19 @@
   <b>用户名:</b>
   <%= @user.username %>
 </p>
-
+<p>
+  <b>邮箱:</b>
+  <%= @user.email %>
+</p>
+<p>
+	<b>状态:</b>
+	<% if @user.state == 1 %>
+		<b>在线</b>
+	<% end %>
+	<% if @user.state == 0 %>
+		<b>离线</b>
+	<% end %>
+</p>
 <p>
   <b>密码:</b>
   <%= @user.password_digest %>
