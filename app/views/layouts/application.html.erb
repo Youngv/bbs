@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>郁金香BBS</title>
+	<%= stylesheet_link_tag    "application", :media => "all" %>
+	<%= javascript_include_tag "application" %>
+	<%= csrf_meta_tags %>
+</head>
+<body class="<%= controller.controller_name %>">
+	<div id="nav">
+		<div class="menu">
+			<ul>
+				<li><a href="http://localhost:3000">主页</a>	</li>
+				<li><a href="#">今日十大</a></li>
+				<li><a href="#">热门讨论区</a></li>
+				<li><a href="#">最新活动</a></li>
+				<li><a href="#">校内新闻</a></li>
+				<li><a href="#">在线帮助</a></li>
+			</ul>	
+		</div>
+		<div class="userinfo">
+			<li><a href="/signin">登录</a>	</li>
+			<li><a href="/users/new">注册</a></li>
+		</div>
+	</div>
+	<div id="main">
+		<%= yield %>		
+	</div>
+	<footer>
+		<div class="container">
+			<p>@郁金香BBS 2012-2015 Powered by Young</p>
+		</div>
+	</footer>
+</body>
+</html>

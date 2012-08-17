@@ -1,0 +1,44 @@
+<% if notice %>
+<p id="notice"><%= notice %></p>
+<% end %>
+
+<div class="sign-form" >
+  <%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+    <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+<div class="sign-box">
+  <fieldset>
+    <legend>注册</legend>
+    <div class="control-group">
+      <%= f.label :username, '用户名' %> <br>
+      <%= f.text_field :username, size: 40 %>
+    </div>
+    <div class="control-group">
+      <%= f.label :email, '邮箱' %><br>
+      <%= f.text_field :email, size: 40 %>
+    </div>
+    <div class="control-group">
+      <%= f.label :password, '密码' %><br>
+      <%= f.password_field :password, size: 40 %>
+    </div>
+    <div class="control-group">
+      <%= f.label :password_confirmation, '确认密码' %><br>
+      <%= f.password_field :password_confirmation, size: 40 %>
+    </div>
+    <div class="control-group">
+      <%= f.submit '注册' %>
+    </div>
+  </fieldset>
+</div>
+
+  <% end %>
+</div>
