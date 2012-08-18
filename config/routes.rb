@@ -8,6 +8,7 @@ Bbs::Application.routes.draw do
   end
 
   resources :users
+  match 'u/:id' => 'users#show'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -7,7 +7,8 @@ class SessionsController < ApplicationController
   	user = User.find_by_username(params[:username])
   	if user and user.authenticate(params[:password])
   		session[:user_id] = user.id
-  		redirect_to users_url
+      user.state = 1
+  		redirect_to user
   	else
   		redirect_to signin_url, alert: "password wrong"
   	end
@@ -15,6 +16,6 @@ class SessionsController < ApplicationController
 
   def destroy
   	session[:user_id] = nil
-  	redirect_to signout_url, alert:"sign out"
+  	redirect_to signin_url, alert:"sign out"
   end
 end

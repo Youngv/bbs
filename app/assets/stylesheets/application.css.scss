@@ -37,10 +37,6 @@ body {
 		text-decoration:none;
 	}
 
-	.menu li a.last {
-		border-right:0; 
-	}
-
 	.userinfo {
 		font:12px verdana, arial, sans-serif;
 		float:right; 
@@ -64,7 +60,6 @@ body {
 	}
 	.userinfo li a:hover {
 		background-color: #3D81EF;
-		//border-radius: 5px;
 	}
 }
 
