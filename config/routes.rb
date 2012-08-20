@@ -7,8 +7,14 @@ Bbs::Application.routes.draw do
     delete 'signout' => :destroy
   end
 
-  resources :users
-  match 'u/:id' => 'users#show'
+  resources :users do
+    resources :posts
+  end
+
+  resources :posts
+ 
+
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

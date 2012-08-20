@@ -2,8 +2,8 @@
 <html>
 <head>
 	<title>郁金香BBS</title>
-	<%= stylesheet_link_tag    "application", :media => "all" %>
-	<%= javascript_include_tag "application" %>
+	<%= stylesheet_link_tag    "application", "editor" %>
+	<%= javascript_include_tag "application", "editor" %>
 	<%= csrf_meta_tags %>
 </head>
 <body class="<%= controller.controller_name %>">
@@ -20,7 +20,7 @@
 		</div>
 		<div class="userinfo">
 			<% if session[:user_id] %>
-			<li><a href="/u/<%= @user.id %>"><%= @user.username %></a></li>
+			<li><a href="/users/<%= @current_user.id %>"><%= @current_user.username %></a></li>
 			<li><%= link_to '注销', signout_path, method: :delete %></li>
 			<% else %>
 			<li><a href="/signin">登录</a>	</li>

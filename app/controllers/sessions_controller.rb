@@ -1,5 +1,6 @@
+# coding: utf-8
 class SessionsController < ApplicationController
-	skip_before_filter :authorize
+	skip_before_filter :authorize, :current_user
   def new
   end
 
@@ -10,12 +11,12 @@ class SessionsController < ApplicationController
       user.state = 1
   		redirect_to user
   	else
-  		redirect_to signin_url, alert: "password wrong"
+  		redirect_to signin_url, alert: "用户名或密码错误"
   	end
   end
 
   def destroy
   	session[:user_id] = nil
-  	redirect_to signin_url, alert:"sign out"
+  	redirect_to signin_url, alert:"用户已注销"
   end
 end

@@ -10,3 +10,11 @@ development:
   username: root
   encoding: utf8
   host: localhost
+
+production:
+  adapter: mysql2
+  database: bbs
+  pool: 5
+  username: root
+  encoding: utf8
+  host: localhost

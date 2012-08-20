@@ -1,4 +1,5 @@
 <h1>Listing users</h1>
+<p>一共有<%= @user_number %>个用户</p>
 
 <table>
   <tr>
@@ -10,15 +11,14 @@
 <% @users.each do |user| %>
   <tr>
     <td>用户名:<%= user.username %></td>
-    <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    <td><%= link_to 'Sign out', signout_path, method: :delete %></td>
+    <td><%= link_to '显示用户信息', user %></td>
+    <td><%= link_to '编辑用户信息', edit_user_path(user) %></td>
+    <td><%= link_to '删除用户', user, method: :delete, data: { confirm: '你确定?' } %></td>
+    <td><%= link_to '注销', signout_path, method: :delete %></td>
+    <td><%= link_to '发表帖子', new_post_path %></td>
 
   </tr>
 <% end %>
 </table>
 
 <br />
-
-<%= link_to 'New User', new_user_path %>

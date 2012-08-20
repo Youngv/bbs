@@ -1,5 +1,16 @@
+/*
+ *= require 'wmd/wmd'
+*/
+
 body {
 	background-color:#EEEEEE;
+	font-size:12px;
+}
+
+#notice {
+	text-align:center;
+	color:red;
+	font-size:14px;
 }
 
 #nav {
@@ -40,7 +51,6 @@ body {
 	.userinfo {
 		font:12px verdana, arial, sans-serif;
 		float:right; 
-		//width: 40%;
 	}
 	.userinfo, .userinfo li {
 		list-style:none;
@@ -62,6 +72,7 @@ body {
 		background-color: #3D81EF;
 	}
 }
+
 
 #main {
 
@@ -102,7 +113,7 @@ body {
 			    width: 100%;
 	    	}
 	    	.control-group {
-	    		margin-top:18px;
+	    		margin-top:15px;
 	    		margin-bottom:9px;
 	    	}
 			textarea, input[type="text"], input[type="password"] {
@@ -119,15 +130,20 @@ body {
 			    color: #555555;
 			    display: inline-block;
 			    height: 18px;
-			    margin-top:5px;
-			    margin-bottom: 9px;
+			    margin-top:4px;
+			    margin-bottom: 5px;
 			    padding: 5px;
 			}
 			input[type="submit"] {
+				margin-top:5px;
+	  			padding: 3px 8px 3px 8px;
 				border-radius: 4px 4px 4px 4px;
 			    border-style: solid;
 			    border-width: 1px;
-			    background-color:#EEEEEE;
+			    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+			    background-color: #F5F5F5;
+				background-image: -moz-linear-gradient(center top , #FFFFFF, #E6E6E6);
+				background-repeat: repeat-x;
 			    color: #333333;
 			    cursor: pointer;
 			    display: inline-block;
@@ -137,12 +153,106 @@ body {
 			}
 			textarea:focus, input[type="text"]:focus, input[type="password"]:focus {
 			    border-color: rgba(82, 168, 236, 0.8);
-			    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(82, 168, 236, 0.6);
-			    
+			    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(82, 168, 236, 0.6);    
 			}
 	    }
 	}
 }
+
+#post {
+	height:100%;
+	width: 100%;
+
+	display:-moz-box;
+	display:-webkit-box;
+	display:box;
+	-moz-box-align:center;
+	-webkit-box-align:center;
+	box-align:center;
+	-moz-box-pack:center;
+	-webkit-box-pack:center;
+	box-pack:center;
+
+	.post-box {
+		width: 842px;
+		height: 569px;
+		background-color:white;
+		padding: 14px;
+		border-radius: 3px 3px 3px 3px;
+	    box-shadow: 0 0 0 1px #DDDDDD;
+
+		.post-title {
+			margin-bottom:5px;
+
+		    #post_title {
+		    	width: 832px;
+		    	height: 18px;
+		    	padding: 4px;
+		    	margin: 0px;
+		    	background-color: #FFFFFF;
+			    border: 1px solid #CCCCCC;
+			    border-radius: 3px 3px 3px 3px;
+		    }
+		}
+
+	    #post_content {
+	    	width: 832px;
+	    	height: 373px;
+	    	padding: 4px;
+	    	margin: 1px;
+	    	background-color: #FFFFFF;
+		    border: 1px solid #CCCCCC;
+		    border-radius: 3px 3px 3px 3px;
+	    }
+
+      	#notes-preview {
+      		width: 832px;
+	      	overflow-x:auto;
+	      	border: 2px dotted #CCCCCC;
+    		padding: 3px;
+      	}
+
+      	#copy_html {
+      		visibility:hidden;
+      		height:0;
+      		widows:0;
+      	}
+
+      	input[type="submit"] {
+  			padding: 3px 8px 3px 8px;
+			border-radius: 4px 4px 4px 4px;
+		    border-style: solid;
+		    border-width: 1px;
+		    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+		    background-color: #F5F5F5;
+			background-image: -moz-linear-gradient(center top , #FFFFFF, #E6E6E6);
+			background-repeat: repeat-x;
+		    color: #333333;
+		    cursor: pointer;
+		    display: inline-block;
+		    text-align: center;
+		    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+		    vertical-align: middle;
+		}
+		input, textarea {
+			-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+			-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+			box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+			-webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+			-moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+			-ms-transition: border linear 0.2s, box-shadow linear 0.2s;
+			-o-transition: border linear 0.2s, box-shadow linear 0.2s;
+			transition: border linear 0.2s, box-shadow linear 0.2s;
+		}
+		input:focus, textarea:focus {
+			border-color: rgba(82, 168, 236, 0.8);
+			-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+			-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+			box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+		}
+	}
+}
+
 
 footer {
 	width:100%;

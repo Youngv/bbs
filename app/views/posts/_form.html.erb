@@ -1,0 +1,44 @@
+<%= form_for(@post) do |f| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @post.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div id="post" >
+  <div class="post-box">
+    <%= form_for @post do |f| %>
+      <div class="post-title">
+        <%= f.text_field :title, placeholder: "标题" %>
+      </div>
+      <div id="notes-button-bar"></div>      
+      <div class="post-content">
+        <%= f.text_area :content %>
+      </div>
+      <div id="notes-preview"></div>
+      <textarea type="text" name="copy_html" value="" id="copy_html"></textarea>
+      <div class="post-sumbit">
+        <%= f.submit "发布" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<% end %>
+
+<script type="text/javascript">
+  new WMDEditor({
+    input: "post_content",
+    button_bar: "notes-button-bar",
+    preview: "notes-preview",
+    output: "copy_html",
+    buttons: "bold italic ol ul heading blockquote code spacer link image undo redo",
+    modifierKeys: false,
+    autoFormatting: false
+  });
+</script>

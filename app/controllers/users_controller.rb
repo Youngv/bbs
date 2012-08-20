@@ -1,11 +1,12 @@
+# coding: utf-8
 class UsersController < ApplicationController
   skip_before_filter :authorize, only: [:new, :create]
-
+  skip_before_filter :current_user, only: [:new, :create]
   # GET /users
   # GET /users.json
   def index
-    @users = User.order(:username)
-
+    @users = User.order(:id)
+    @user_number = User.count
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }
@@ -46,7 +47,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: "User #{@user.username} was successfully created." }
+        format.html { redirect_to @user, notice: "用户 #{@user.username} 成功注册." }
         format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render action: "new" }
@@ -62,7 +63,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to @user, notice: "User #{@user.username} was successfully updated." }
+        format.html { redirect_to @user, notice: "用户 #{@user.username} 的资料更新成功." }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
