@@ -3,55 +3,30 @@
 <section id="post">
 	<article class="box">
 		<header>
-			<table>
-				<tbody>
-					<tr>
-						<td>
-							<div class="post-title"><%= @post.title %></div>
-							<span class="author">
-								<a href="/users/<%= @author.id %>"><%= @author.username %></a>
-							</span>
-							<span class="time">
-								创建于 <%= timeago_tag @post.created_at %> 之前
-							</span>
-							<% if signin? && @author.id == current_user.id %>
-								<%= link_to '编辑', edit_post_path(@post) %>
-							<% end -%>
-						</td>
-					</tr>
-				</tbody>
-			</table>
+
+			<div class="post-title"><%= @post.title %></div>
+			<span class="author">
+				<a href="/users/<%= @author.id %>"><%= @author.username %></a>
+			</span>
+			<span class="time">
+				创建于 <%= timeago_tag @post.created_at %> 之前
+			</span>
+			<% if signin? && @author.id == current_user.id %>
+			<%= link_to '编辑', edit_post_path(@post) %>
+			<% end -%>
 		</header>
 		<%= raw markdown(@post.content) %>
 	</article>
 </section>
+
 <% if @post.comments.count > 0 %>
 <section id="comment">
-	<table class="comment-list">
-		<tbody>
-			<tr>
-				<td>
-					<%= @post.comments.each do |comment| %>
-						<article>
-							<header>
-								<div class="left">
-									<a href="/users/<%= comment.user_id %>"><%= comment.user_id %></a>
-								</div>
-								<div class="right">
-								<span class="time">
-									<%= comment.user_id %> 创建于 <%= timeago_tag comment.created_at %> 之前
-								</span>
-								</div>
-							</header>
-							<%= raw markdown(comment.content) %>
-						</article>
-					<% end -%>
-				</td>
-			</tr>
-		</tbody>
-	</table>
+	<div class="comment-list">
+		<%= render :partial => "comments/comment", :collection => @post.comments %>
+	</div>
 </section>
 <% end -%>
+
 <% if signin? %> 
 <div class="comment-editor" >
   <div class="comment-box">

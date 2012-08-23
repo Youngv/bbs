@@ -7,8 +7,6 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    #@user = User.find(session[:user_id])
-    #@posts = @user.posts.all
     @posts = Post.order("created_at desc").paginate(page: params[:page], per_page: 2)
 
     respond_to do |format|
@@ -23,7 +21,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @author = User.find(@post.user_id)
     @comments = Comment.find_by_post_id(@post.id)
-
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @post }
@@ -51,7 +49,6 @@ class PostsController < ApplicationController
   def create
     @user = User.find(session[:user_id])
     @post = @user.posts.new(params[:post])
-    #@post = Post.new(params[:post])
 
     respond_to do |format|
       if @post.save

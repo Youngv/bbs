@@ -347,8 +347,28 @@ body {
 		    border-radius: 3px 3px 3px 3px;
 		    box-shadow: 0 0 0 1px #DDDDDD;
 		    margin: 0;
-		    padding: 14px;
-		    width:870px;			
+		    padding:0;
+		    width:870px;
+
+
+		    article {
+		    	display:block;
+		    	font-size:12px;
+		    	border-top:1px solid #dddddd;
+		    	padding:10px;
+		    	margin:0;
+		    	
+		    	header {
+			    	height:10px;
+
+			    	.left {
+			    		float: left;
+			    	}
+			    	.right {
+			    		float: right;
+			    	}
+		        }
+		    }			
 		}
 	}
 
