@@ -1,4 +1,5 @@
 <div class="sign-form" >
+  <div class="sign-box">
   <%= form_for(@user) do |f| %>
   <% if @user.errors.any? %>
   <div id="error_explanation">
@@ -15,9 +16,13 @@
       <p id="notice"><%= notice %></p>
     <% end %>
     
-<div class="sign-box">
+
   <fieldset>
+    <% if @user.new_record? %>
     <legend>注册</legend>
+    <% else %>
+    <legend>修改用户信息</legend>
+    <% end -%>
     <div class="control-group">
       <%= f.label :username, '用户名' %> <br>
       <%= f.text_field :username, size: 40 %>
@@ -35,7 +40,12 @@
       <%= f.password_field :password_confirmation, size: 40 %>
     </div>
     <div class="control-group">
-      <%= f.submit '注册' %>
+          
+    <% if @user.new_record? %>
+    <%= f.submit '注册' %>
+    <% else %>
+    <%= f.submit '确认修改' %>
+    <% end -%>
     </div>
   </fieldset>
 </div>

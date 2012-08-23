@@ -2,6 +2,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :authorize, :current_user
+  helper_method :signin?, :current_user
   
   protected
   	def authorize
@@ -11,6 +12,21 @@ class ApplicationController < ActionController::Base
   	end
 
   	def current_user
-  		@current_user = User.find(session[:user_id])
+  		@current_user = login_from_session unless defined?(@current_user)
+      @current_user
   	end
+
+    def signin?
+      !!current_user
+    end
+
+    def login_from_session
+      if session[:user_id].present?
+        begin
+          User.find session[:user_id]
+        rescue
+          session[:user_id] = nil
+        end
+      end
+    end
 end

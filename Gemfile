@@ -7,7 +7,9 @@ gem 'rails', '3.2.7'
 
 gem 'mysql2'
 gem 'wmd-rails'
-
+gem 'rails-timeago'
+gem 'redcarpet'
+gem 'will_paginate'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -36,4 +38,4 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # gem 'capistrano'
 
 # To use debugger
-# gem 'debugger'
+gem 'debugger'

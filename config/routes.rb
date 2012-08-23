@@ -1,4 +1,5 @@
 Bbs::Application.routes.draw do
+
   #get "user" => "user/index"
 
   controller :sessions do
@@ -9,9 +10,12 @@ Bbs::Application.routes.draw do
 
   resources :users do
     resources :posts
+    resources :comments
   end
 
-  resources :posts
+  resources :posts do
+    resources :comments
+  end
  
 
 

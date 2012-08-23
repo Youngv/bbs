@@ -1,13 +1,78 @@
 <p id="notice"><%= notice %></p>
 
-<h2>Posts</h2>
-
-<div class="post">
-	<h1><%= @post.title %></h1>
-	<p><%= @post.content %></p>
-	<br>
+<section id="post">
+	<article class="box">
+		<header>
+			<table>
+				<tbody>
+					<tr>
+						<td>
+							<div class="post-title"><%= @post.title %></div>
+							<span class="author">
+								<a href="/users/<%= @author.id %>"><%= @author.username %></a>
+							</span>
+							<span class="time">
+								创建于 <%= timeago_tag @post.created_at %> 之前
+							</span>
+							<% if signin? && @author.id == current_user.id %>
+								<%= link_to '编辑', edit_post_path(@post) %>
+							<% end -%>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</header>
+		<%= raw markdown(@post.content) %>
+	</article>
+</section>
+<% if @post.comments.count > 0 %>
+<section id="comment">
+	<table class="comment-list">
+		<tbody>
+			<tr>
+				<td>
+					<%= @post.comments.each do |comment| %>
+						<article>
+							<header>
+								<div class="left">
+									<a href="/users/<%= comment.user_id %>"><%= comment.user_id %></a>
+								</div>
+								<div class="right">
+								<span class="time">
+									<%= comment.user_id %> 创建于 <%= timeago_tag comment.created_at %> 之前
+								</span>
+								</div>
+							</header>
+							<%= raw markdown(comment.content) %>
+						</article>
+					<% end -%>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</section>
+<% end -%>
+<% if signin? %> 
+<div class="comment-editor" >
+  <div class="comment-box">
+    <%= form_for [@post, Comment.new] do |f| %>
+      <div id="editor-button-bar"></div>
+      <%= f.text_area :content, placeholder: "正文"  %>
+      <div id="editor-preview"></div>
+        <%= f.submit "发布",  :class => "btn"%>     
+    <% end %>
+  </div>
 </div>
+<% end -%>
 
-
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+<script type="text/javascript">
+  new WMDEditor({
+    input: "comment_content",
+    button_bar: "editor-button-bar",
+    preview: "editor-preview",
+    output: "copy_html",
+    modifierKeys: true,
+    autoFormatting: true,
+    helpLink: "/markdownhelp.html"
+  });
+</script>

@@ -1,25 +1,21 @@
-<h1>Listing posts</h1>
-
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Content</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
+<div id="post-list"><div class="box">
+  <div class="sorts">最新文章</div>
 <% @posts.each do |post| %>
-  <tr>
-    <td><%= post.title %></td>
-    <td><%= post.content %></td>
-    <td><%= link_to 'Show', post %></td>
-    <td><%= link_to 'Edit', edit_post_path(post) %></td>
-    <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+    <div class="post-line">
+      <div class="title">
+      <%= link_to post.title, post %>
+      </div>
+      <div class="info">
+        由<a href="/users/<%= post.user_id %>"><%= User.find(post.user_id).username %></a>发布于<%= post.created_at %> |
+        <% if signin? && @current_user.id == post.user_id %>
+          <%= link_to '编辑', edit_post_path(post) %> |
+          <%= link_to '删除', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end -%>
+      </div>   
+    </div>
 <% end %>
-</table>
+<%= will_paginate @posts, :inner_window => 2 %>
+</div></div>
 
-<br />
 
 <%= link_to 'New Post', new_post_path %>

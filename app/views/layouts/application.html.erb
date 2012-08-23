@@ -3,27 +3,27 @@
 <head>
 	<title>郁金香BBS</title>
 	<%= stylesheet_link_tag    "application", "editor" %>
-	<%= javascript_include_tag "application", "editor" %>
+	<%= javascript_include_tag "application" %>	
 	<%= csrf_meta_tags %>
 </head>
 <body class="<%= controller.controller_name %>">
 	<div id="nav">
 		<div class="menu">
-			<ul>
-				<li><a href="http://localhost:3000">主页</a>	</li>
-				<li><a href="/users">会员</a></li>
-				<li><a href="#">热门讨论区</a></li>
-				<li><a href="#">最新活动</a></li>
-				<li><a href="#">校内新闻</a></li>
-				<li><a href="#">在线帮助</a></li>
-			</ul>	
+			<ol>
+				<li><a href="/posts"><span class="menu-item">主页</span></a></li>
+				<li><a href="/users"><span class="menu-item">会员</span></a></li>
+				<li><a href="#"><span class="menu-item">热门讨论区</span></a></li>
+				<li><a href="#"><span class="menu-item">最新活动</span></a></li>
+				<li><a href="#"><span class="menu-item">校内新闻</span></a></li>
+				<li><a href="#"><span class="menu-item">在线帮助</span></a></li>
+			</ol>	
 		</div>
 		<div class="userinfo">
 			<% if session[:user_id] %>
 			<li><a href="/users/<%= @current_user.id %>"><%= @current_user.username %></a></li>
 			<li><%= link_to '注销', signout_path, method: :delete %></li>
 			<% else %>
-			<li><a href="/signin">登录</a>	</li>
+			<li><a href="/signin">登录</a></li>
 			<li><a href="/users/new">注册</a></li>
 			<% end -%>
 		</div>
