@@ -1,6 +1,6 @@
 Bbs::Application.routes.draw do
-
-  #get "user" => "user/index"
+  resources :comments
+  #get "post" => "post/index"
 
   controller :sessions do
     get 'signin' => :new

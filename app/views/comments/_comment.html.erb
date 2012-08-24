@@ -1,14 +1,14 @@
 <article>
 	<header>
 		<div class="left">
-			<a href="/users/<%= comment.user_id %>"><%= comment.user_id %></a>
-			<% if signin? && comment.user_id == current_user.id %>
+			<a href="/users/<%= comment.user.id %>"><%= comment.user.username %></a>
+			<% if signin? && comment.user == current_user %>
 			<%= link_to '编辑', edit_post_comment_path(@post, comment) %>
 			<% end -%>
 		</div>
 		<div class="right">
 			<span class="time">
-				<%= comment.user_id %> 创建于 <%= timeago_tag comment.created_at %> 之前
+				由 <%= comment.user.username %> 创建于 <%= timeago_tag comment.created_at %> 之前
 			</span>
 		</div>
 	</header>

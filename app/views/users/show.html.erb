@@ -9,7 +9,7 @@
 </p>
 <p>
 	<b>状态:</b>
-	<% if session[:user_id] == @user.id %>
+	<% if @user.state %>
 		<b>在线</b>
 	<% else %>
 		<b>离线</b>

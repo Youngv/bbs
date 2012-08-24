@@ -1,12 +1,14 @@
 # coding: utf-8
 class UsersController < ApplicationController
-  skip_before_filter :authorize, only: [:new, :create]
+  skip_before_filter :authorize, only: [:new, :create, :index]
   skip_before_filter :current_user, only: [:new, :create]
   # GET /users
   # GET /users.json
   def index
-    @users = User.order(:id)
-    @user_number = User.count
+    @users = User.all
+    @hot_users = User.order("comments_count desc", "posts_count desc").limit(30)
+    @recent_users = User.order("created_at desc").limit(30)
+    @online_users = User.find(:all, :conditions => ["state = 1"])
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }

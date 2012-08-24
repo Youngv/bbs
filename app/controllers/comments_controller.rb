@@ -1,3 +1,4 @@
+# coding: utf-8
 class CommentsController < ApplicationController
   # GET /comments
   # GET /comments.json
@@ -23,7 +24,7 @@ class CommentsController < ApplicationController
 
   # GET /comments/new
   # GET /comments/new.json
-  def new
+  def new 
     @comment = Comment.new
 
     respond_to do |format|
@@ -42,7 +43,8 @@ class CommentsController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
     @comment = @post.comments.new(params[:comment])
-    @comment.user_id = current_user.id
+    @comment.user = current_user
+    User.increment_counter(:comments_count, current_user.id)
     redirect_to @post if @comment.save
   end
 
@@ -50,10 +52,11 @@ class CommentsController < ApplicationController
   # PUT /comments/1.json
   def update
     @comment = Comment.find(params[:id])
+    @post = @comment.post
 
     respond_to do |format|
       if @comment.update_attributes(params[:comment])
-        format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
+        format.html { redirect_to @post, notice: '评论编辑成功' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

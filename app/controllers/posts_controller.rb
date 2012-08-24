@@ -7,7 +7,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.order("created_at desc").paginate(page: params[:page], per_page: 2)
+    @posts = Post.order("created_at desc").paginate(page: params[:page], per_page: 10)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -19,8 +19,9 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @post = Post.find(params[:id])
-    @author = User.find(@post.user_id)
-    @comments = Comment.find_by_post_id(@post.id)
+    @author = @post.user
+    @comments = @post.comments.includes(:user)
+
     
     respond_to do |format|
       format.html # show.html.erb
@@ -48,6 +49,7 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @user = User.find(session[:user_id])
+    User.increment_counter(:posts_count, @user.id)
     @post = @user.posts.new(params[:post])
 
     respond_to do |format|

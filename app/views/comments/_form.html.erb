@@ -1,4 +1,4 @@
-<%= form_for(@comment) do |f| %>
+<%= form_for([@post,@comment]) do |f| %>
   <% if @comment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
@@ -11,15 +11,28 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :post_id %><br />
-    <%= f.number_field :post_id %>
+<% if signin? %> 
+<div class="comment-editor" >
+  <div class="comment-box">
+    <h1>编辑评论</h1>
+      <div id="editor-button-bar"></div>
+        <%= f.text_area :content %>
+      <div id="editor-preview"></div>
+        <%= f.submit "更新",  :class => "btn"%>     
   </div>
-  <div class="field">
-    <%= f.label :content %><br />
-    <%= f.text_area :content %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+</div>
+<% end -%>
+
 <% end %>
+
+<script type="text/javascript">
+  new WMDEditor({
+    input: "comment_content",
+    button_bar: "editor-button-bar",
+    preview: "editor-preview",
+    output: "copy_html",
+    modifierKeys: true,
+    autoFormatting: true,
+    helpLink: "/markdownhelp.html"
+  });
+</script>

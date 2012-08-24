@@ -1,14 +1,7 @@
-<h1>Listing users</h1>
-<p>一共有<%= @user_number %>个用户</p>
+<% if session[:user_id] %>
 
 <table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @users.each do |user| %>
+  <% @users.each do |user| %>
   <tr>
     <td>用户名:<%= user.username %></td>
     <td><%= link_to '显示用户信息', user %></td>
@@ -16,9 +9,34 @@
     <td><%= link_to '删除用户', user, method: :delete, data: { confirm: '你确定?' } %></td>
     <td><%= link_to '注销', signout_path, method: :delete %></td>
     <td><%= link_to '发表帖子', new_post_path %></td>
-
   </tr>
-<% end %>
+  <% end %>
 </table>
+<% end -%>
 
-<br />
+
+
+<div id="users">
+  <div class="box">
+  <div class="info">目前已经有 <%= @users.count %> 位会员加入了郁金香BBS, 目前共有 <%= @online_users.count %> 名会员在线。</div>
+  <div class="hot_users">
+    <h1>活跃会员</h1>
+    <% @hot_users.each do |hot_user| %>
+      <div class="user">
+        <%= hot_user.username %>
+        <%= timeago_tag hot_user.created_at %>
+      </div> 
+    <% end %>
+  </div>
+
+  <div class="recent_users">
+    <h1>最新加入的会员</h1>
+    <% @recent_users.each do |recent_user| %>
+      <div class="user">
+        <%= recent_user.username %>
+        <%= timeago_tag recent_user.created_at %>
+      </div>
+    <% end %>
+  </div>
+  </div>
+</div>
