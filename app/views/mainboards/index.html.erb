@@ -1,0 +1,23 @@
+<h1>Listing mainboards</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @mainboards.each do |mainboard| %>
+  <tr>
+    <td><%= mainboard.name %></td>
+    <td><%= link_to 'Show', mainboard %></td>
+    <td><%= link_to 'Edit', edit_mainboard_path(mainboard) %></td>
+    <td><%= link_to 'Destroy', mainboard, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Mainboard', new_mainboard_path %>

@@ -5,4 +5,8 @@ module ApplicationHelper
 	        :no_intraemphasis => true, :autolink => true)
 	    return markdown.render(text).html_safe
 	end
+
+	def active_tag(name)
+		result = controller.controller_name == name ? 'active' : nil			
+	end		
 end

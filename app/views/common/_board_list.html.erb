@@ -1,0 +1,38 @@
+<div id="left-nav">
+<!-- 主要板块 -->
+  <div class="accordion"  id="accordion">
+    <% @get_mainboards.each do |get_mainboard| %>
+    <div class="accordion-group">
+      <div class="accordion-heading">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= get_mainboard.id %>">
+          <%= get_mainboard.name %>
+        </a>
+      </div>
+      <div id="collapse<%= get_mainboard.id %>" class="accordion-body collapse" style="height: 0px; ">
+         <% get_mainboard.boards.each do |board| %>
+        <div class="accordion-inner">
+          <li><%= link_to board.name, board %></li>         
+        </div>
+         <% end -%>
+      </div>
+    </div>
+    <% end -%>
+
+<!-- 热门讨论区 -->
+    <div class="accordion-group">
+      <div class="accordion-heading">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOnly">
+          热门讨论区
+        </a>
+      </div>
+      <div id="collapseOnly" class="accordion-body in" style="height: 0px; ">
+       <% @hot_boards.each do |hot_board| %>
+       <div class="accordion-inner">
+        <li><%= link_to hot_board.name, hot_board %></li>         
+      </div>
+      <% end -%>
+    </div>
+  </div>
+
+  </div>
+</div>

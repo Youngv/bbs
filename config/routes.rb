@@ -1,4 +1,8 @@
 Bbs::Application.routes.draw do
+  resources :boards
+
+  resources :mainboards
+
   resources :comments
   #get "post" => "post/index"
 

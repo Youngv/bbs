@@ -19,6 +19,7 @@
       <h2>编辑文章</h2>
     <% end -%>
     <%= form_for @post do |f| %>
+      <%= collection_select(:post, :board_id, Board.all, :id, :same_as_record, :prompt => true) %>
       <%= f.text_field :title, placeholder: "标题" %>
       <div id="editor-button-bar"></div>
       <%= f.text_area :content, placeholder: "正文"  %>

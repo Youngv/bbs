@@ -9,7 +9,11 @@ body {
 	font-size:14px;
 }
 
-#nav {
+#container {
+
+}
+
+#top-nav {
     background-color: #2D2D2D;
     background-position: 0 -138px;
     background-repeat: repeat-x;
@@ -38,6 +42,10 @@ body {
 	    top: 0;
 	    white-space: nowrap;
 	    z-index: 1000;
+
+	    .active {
+	    	background-color:#4C4C4C;
+	    }
 	}
 
 	ol {
@@ -77,11 +85,52 @@ body {
 	}
 }
 
+#left-nav {
+	margin-top:100px;
+	float:left;
+	width: 150px;
+
+	.accordion {
+		margin-bottom: 18px;
+	}
+	.accordion-group {
+		margin-bottom: 2px;
+		border: 1px solid #e5e5e5;
+		-webkit-border-radius: 4px;
+		-moz-border-radius: 4px;
+		border-radius: 4px;
+	}
+	.accordion-heading {
+		border-bottom: 0;
+	}
+	.accordion-heading .accordion-toggle {
+		display: block;
+		padding: 8px 15px;
+	}
+	.accordion-inner {
+		padding: 9px 15px;
+		border-top: 1px solid #e5e5e5;
+	}
+	.collapse {
+		-webkit-transition: height 0.35s ease;
+		-moz-transition: height 0.35s ease;
+		-ms-transition: height 0.35s ease;
+		-o-transition: height 0.35s ease;
+		transition: height 0.35s ease;
+		position: relative;
+		overflow: hidden;
+		height: 0;
+	}
+	.collapse.in {
+		height: auto;
+	}
+}
+
 
 #main {
-	margin-top:50px;
+	float: left;
+	margin-top:100px;
 	.sign-form {
-		margin-top:50px;
 		height:100%;
 		width: 100%;
 
@@ -184,7 +233,6 @@ body {
 	}
 
 	#post-editor {
-		margin-top:50px;
 		height:100%;
 		width: 100%;
 
@@ -286,7 +334,6 @@ body {
 	}
 
 	#post {
-		margin-top:50px;
 	    height:100%;
 	    width: 100%;
 		display:-moz-box;
@@ -470,7 +517,6 @@ body {
 	}
 
 	#post-list {
-		margin-top:50px;
 		height:100%;
 		width: 100%;
 
@@ -567,7 +613,6 @@ body {
 	}
 
 	#users {
-		margin-top:50px;
 		height:100%;
 		width: 100%;
 
@@ -622,7 +667,7 @@ body {
 
 footer {
 	width:100%;
-	.container {
+	.foot-bar {
 		color: #8a8c8e;
 		text-align:center;
 		font-size:14px;

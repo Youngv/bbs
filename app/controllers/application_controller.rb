@@ -1,8 +1,8 @@
 # coding: utf-8
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :authorize, :current_user
-  helper_method :signin?, :current_user
+  before_filter :authorize, :current_user, :get_mainboards_and_hot_boards
+  helper_method :signin?, :current_user, 
   
   protected
   	def authorize
@@ -28,5 +28,10 @@ class ApplicationController < ActionController::Base
           session[:user_id] = nil
         end
       end
+    end
+
+    def get_mainboards_and_hot_boards
+      @get_mainboards = Mainboard.all
+      @hot_boards = Board.limit(3)
     end
 end
