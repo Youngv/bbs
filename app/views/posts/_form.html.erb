@@ -14,13 +14,13 @@
 <div id="post-editor" >
   <div class="post-box">
     <% if @post.new_record? %>
-      <h2>发布新文章</h2>
+      <h2>发布新文章/讨论区:</h2>
     <% else %>
       <h2>编辑文章</h2>
     <% end -%>
     <%= form_for @post do |f| %>
-      <%= collection_select(:post, :board_id, Board.all, :id, :same_as_record, :prompt => true) %>
-      <%= f.text_field :title, placeholder: "标题" %>
+      <%= collection_select :post, :board_id, Board.all, :id, :same_as_record, :prompt => "请选择讨论区" %>
+      <%= f.text_field :title, placeholder: "标题" %> 
       <div id="editor-button-bar"></div>
       <%= f.text_area :content, placeholder: "正文"  %>
       <div id="editor-preview"></div>
@@ -45,4 +45,8 @@
     autoFormatting: true,
     helpLink: "/markdownhelp.html"
   });
+</script>
+
+<script type="text/javascript"> 
+  $("#post_board_id").chosen();
 </script>

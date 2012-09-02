@@ -13,11 +13,11 @@ class BoardsController < ApplicationController
   # GET /boards/1.json
   def show
     @board = Board.find(params[:id])
-    @board_posts = @board.posts.page(params[:page]).order('created_at DESC')
+    @board_posts = @board.posts.order("created_at desc").paginate(page: params[:page], per_page: 10)
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @board }
+      format.json { render json: @board } 
     end
   end
 

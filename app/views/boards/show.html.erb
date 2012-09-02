@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <div id="post-list"><div class="box">
-  <div class="sorts"><%= @board.mainboard.name %>/<%= @board.name %>     最新文章    <%= link_to '发布新文章', new_post_path %></div>
-<% @board.posts.each do |post| %>
+  <div class="sorts"><%= @board.mainboard.name %>/<%= @board.name %>     最新文章    <%= link_to '发布新文章', new_post_path(:board => @board.id) %></div>
+<% @board_posts.each do |post| %>
     <div class="post-line">
       <div class="title">
       <%= link_to post.title, post %>
@@ -16,7 +16,7 @@
       </div>   
     </div>
 <% end %>
-<%= will_paginate @board_posts, :inner_window => 2 %>
+<%= will_paginate @board_posts %>
 </div></div>
 
 <%= link_to 'Edit', edit_board_path(@board) %> |

@@ -33,7 +33,13 @@ class PostsController < ApplicationController
   # GET /posts/new.json
   def new
     @post = Post.new
-
+    if !params[:board].blank?
+      @post.board_id = params[:board]
+      @board = Board.find_by_id(params[:board])
+      if @board.blank?
+        render_404
+      end
+    end
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @post }
@@ -51,6 +57,7 @@ class PostsController < ApplicationController
     @user = User.find(session[:user_id])
     User.increment_counter(:posts_count, @user.id)
     @post = @user.posts.new(params[:post])
+    @post.board_id = params[:board] || params[:post][:board_id]
 
     respond_to do |format|
       if @post.save
