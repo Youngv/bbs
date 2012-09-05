@@ -1,8 +1,8 @@
 # coding: utf-8
 require 'will_paginate/array'
 class PostsController < ApplicationController
-  skip_before_filter :authorize
-  skip_before_filter :current_user
+  skip_before_filter :authorize, only: [:index, :show]
+  skip_before_filter :current_user, only: [:index, :show]
   before_filter :signin?
   # GET /posts
   # GET /posts.json

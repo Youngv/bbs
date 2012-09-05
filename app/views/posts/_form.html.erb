@@ -1,8 +1,8 @@
 <%= form_for(@post) do |f| %>
+  
   <% if @post.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
+      <h2><%= @post.errors.count %>个问题导致文章不能正常发布：</h2>
       <ul>
       <% @post.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -12,7 +12,7 @@
   <% end %>
 
 <div id="post-editor" >
-  <div class="post-box">
+  <div class="post-editor-box">
     <% if @post.new_record? %>
       <h2>发布新文章</h2>
     <% else %>
@@ -32,6 +32,7 @@
     <% end %> 
   </div>
 </div>
+
 <% end %>
 
 

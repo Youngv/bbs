@@ -14,7 +14,7 @@
 				<%= nav_link '会员', '/users', {:class => 'link'}, {:wrapper => 'li', :selected_class => 'active'} %>
 			</ol>	
 		</div>
-		<div class="userinfo">
+		<div class="user">
 			<% if session[:user_id] %>
 			    <li><a href="/users/<%= @current_user.id %>"><%= @current_user.username %></a></li>
 			    <li><%= link_to '注销', signout_path, method: :delete %></li>

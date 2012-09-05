@@ -1,7 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<div id="post-list"><div class="box">
-  <div class="sorts"><%= @board.mainboard.name %>/<%= @board.name %>     最新文章    <%= link_to '发布新文章', new_post_path(:board => @board.id) %></div>
+<div id="post-list"><div class="post-list-box">
+  <div class="sorts">
+    主板块:<%= @board.mainboard.name %>>>子板块:<%= @board.name %>     最新文章    <%= link_to '发布新文章', new_post_path(:board => @board.id) %>
+  </div>
+  <% if @board.posts.count == 0 %>
+  <h1>该板块目前没有文章</h1>
+  <% end -%>
 <% @board_posts.each do |post| %>
     <div class="post-line">
       <div class="title">

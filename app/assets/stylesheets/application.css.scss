@@ -3,7 +3,7 @@ body {
 	font-size:12px;
 }
 
-#notice {
+#notice, #error_explanation {
 	text-align:center;
 	color:red;
 	font-size:14px;
@@ -31,12 +31,12 @@ body {
 	    padding-left: 2px;
 	}
 
-	.userinfo {
+	.user {
 		padding-right: 5px;
 		right: 0;
 	}
 
-	.menu, .userinfo {
+	.menu, .user {
 	    height: 30px;
 	    position: absolute;
 	    top: 0;
@@ -255,7 +255,7 @@ body {
 		-webkit-box-pack:center;
 		box-pack:center;
 
-		.post-box {		
+		.post-editor-box {		
 			width: 842px;
 			height: auto;
 			background-color:white;
@@ -355,16 +355,15 @@ body {
 		-webkit-box-pack:center;
 		box-pack:center;
 
-		.box {
+		.post-box {
 			background-color: white;
 		    border-radius: 3px 3px 3px 3px;
 		    box-shadow: 0 0 0 1px #DDDDDD;
 		    margin: 0;
-		    padding: 14px;
 		    width:870px;
 
 		    .post-title {
-		    	margin-bottom: 14px;
+		    	margin-bottom: 10px;
     			font-size: 24px;
     			line-height: 36px;
     			color: #123456;
@@ -376,6 +375,11 @@ body {
 			    font-weight: bold;
 			    margin-bottom: 10px;
 			    padding-bottom: 10px;
+			    padding-left:10px;
+			}
+
+			.post-content {
+				padding-left:5px;
 			}
 		}
 	}
@@ -399,14 +403,25 @@ body {
 		    border-radius: 3px 3px 3px 3px;
 		    box-shadow: 0 0 0 1px #DDDDDD;
 		    margin: 0;
-		    padding:0;
 		    width:870px;
 
+		    h1 {
+				border-bottom: 1px solid #EEE;
+			    color: #333333;
+			    font-size: 16px;
+			    padding:5px;
+			}
+
+			span {
+				margin:5px;
+				color:#999;
+				font-size:13px;
+			}	
 
 		    article {
 		    	display:block;
 		    	font-size:12px;
-		    	border-top:1px solid #dddddd;
+		    	border-bottom:1px solid #dddddd;
 		    	padding:10px;
 		    	margin:0;
 		    	
@@ -439,11 +454,9 @@ body {
 		-webkit-box-pack:center;
 		box-pack:center;
 
-		.comment-box {		
-			width: 842px;
-			height: 80px;
+		.comment-editor-box {		
+			width: 870px;
 			background-color:white;
-			padding: 14px;
 			border-radius: 3px 3px 3px 3px;
 		    box-shadow: 0 0 0 1px #DDDDDD;
 
@@ -451,12 +464,19 @@ body {
 				border-bottom: 1px solid #EEE;
 			    color: #333333;
 			    font-size: 16px;
-			    padding: 0;
+			    padding: 5px;
+			}
+
+			span {
+				margin:5px;
+				color:#999;
+				font-size:13px;
 			}
 
 		    #comment_content {
-		    	width: 832px;
+		    	width: 825px;
 		    	height: 80px;
+		    	margin-left:10px;
 		    }
 
 	      	#editor-preview {
@@ -464,7 +484,7 @@ body {
 		      	overflow-x:auto;
 		      	border: 2px dotted #CCCCCC;
 	    		padding: 3px;
-	    		margin:3px 0 5px 0;
+	    		margin:3px 0 5px 5px;
 	      	}
 
 			input, textarea {
@@ -497,7 +517,7 @@ body {
 				text-decoration:none;
 				display: inline-block;
 				padding: 4px 10px 4px;
-				margin-right: 10px;
+				margin:3px 5px 7px 10px;
 				font-size: 13px;
 				line-height: 18px;
 				color: #333;
@@ -539,24 +559,37 @@ body {
 		-webkit-box-pack:center;
 		box-pack:center;
 
-		.box {
+		.post-list-box {
 			width: 870px;
 			background-color:white;
-	    	border-radius: 6px 6px 6px 6px;
+	    	border-radius: 3px 3px 3px 3px;
 		    box-shadow: 0 0 2px rgba(0, 0, 0, 0.05);
 		    margin: 0;
-		    padding: 0;
+		    padding:0;
 
 		    .sorts {
 		    	height:30px;
-		    	background-color:#a1a3a6;
+		    	background-color:white;
 		    	border-bottom: 1px solid #DDDDDD;
 				border-radius: 6px 6px 0 0;
 				padding:6px 10px 4px 10px;
 				font-size:18px;
+				margin-bottom:0;
 
 		    }
 
+			h1 {
+				border-bottom: 1px solid #EEE;
+			    color: #999;
+			    font-size: 16px;
+			    padding: 5px;
+			}		    
+			
+			span {
+				margin:5px;
+				color:#999;
+				font-size:13px;
+			}			
 		    .post-line {
 		    	height:50px;
 		    	border-bottom: 1px solid #DDDDDD;
@@ -669,6 +702,58 @@ body {
 				    text-align: center;
 				    width: 70px;
 	    		}
+			}
+		}
+	}
+
+	#user-info {
+		height:100%;
+		width: 100%;
+		margin-top:50px;
+		margin-bottom:20px;
+
+		display:-moz-box;
+		display:-webkit-box;
+		display:box;
+		-moz-box-align:center;
+		-webkit-box-align:center;
+		box-align:center;
+		-moz-box-pack:center;
+		-webkit-box-pack:center;
+		box-pack:center;
+
+		.user-info-box {
+			width: 870px;
+			background-color:white;
+			border-radius:3px;
+			margin:0;
+
+			h1 {
+				border-bottom: 1px solid #EEE;
+			    color: #333333;
+			    font-size: 16px;
+			    padding: 5px;
+			}
+
+			ul {
+				list-style: none;
+
+				li {
+					display: list-item;
+					text-align: -webkit-match-parent;
+					font-size: 14px;
+					line-height: 180%;
+					border-bottom: 1px dashed #EEE;
+				}
+
+				label {
+					color: #999;
+					font-size: 12px;
+					margin-right: 8px;
+					display: inline-block;
+					width: 100px;
+					text-align: right;
+				}
 			}
 		}
 	}

@@ -1,9 +1,9 @@
+
 <p id="notice"><%= notice %></p>
 
 <section id="post">
-	<article class="box">
+	<article class="post-box">
 		<header>
-
 			<div class="post-title"><%= @post.title %></div>
 			<span class="author">
 				<a href="/users/<%= @author.id %>"><%= @author.username %></a>
@@ -15,7 +15,7 @@
 			<%= link_to '编辑', edit_post_path(@post) %>
 			<% end -%>
 		</header>
-		<%= raw markdown(@post.content) %>
+		<div class="post-content"><%= raw markdown(@post.content) %></div>
 	</article>
 </section>
 
@@ -29,7 +29,7 @@
 
 <% if signin? %> 
 <div class="comment-editor" >
-  <div class="comment-box">
+  <div class="comment-editor-box">
     <%= form_for [@post, Comment.new] do |f| %>
       <div id="editor-button-bar"></div>
       <%= f.text_area :content, placeholder: "评论"  %>

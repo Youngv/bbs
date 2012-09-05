@@ -1,24 +1,83 @@
 <p id="notice"><%= notice %></p>
-<p>
-  <b>用户名:</b>
-  <%= @user.username %>
-</p>
-<p>
-  <b>邮箱:</b>
-  <%= @user.email %>
-</p>
-<p>
-	<b>状态:</b>
-	<% if @user.state %>
-		<b>在线</b>
-	<% else %>
-		<b>离线</b>
-	<% end %>
-</p>
-<p>
-  <b>密码:</b>
-  <%= @user.password_digest %>
-</p>
+
+<div id="user-info">
+	<div class="user-info-box">
+		<h1>用户信息</h1>
+		<ul>
+			<li>第<%= @user.id %>名会员，加入时间<%= timeago_tag @user.created_at %>之前</li>
+			<li>
+				<label>用户名:</label>
+				<strong><%= @user.username %></strong>
+			</li>
+			<li>
+				<label>邮箱:</label>
+				<strong><%= @user.email %></strong>
+			</li>
+			<li>
+				<label>状态:</label>
+				<strong>
+					<% if @user.state == 1 %>
+						在线
+					<% else @user.state == 0 %>
+						离线
+					<% end %>
+				</strong>
+			</li>
+		</ul>
+	</div>
+</div>
+
+<div id="post-list">
+	<div class="post-list-box">
+		<h1>最近发布的帖子</h1>
+		<% if @user.posts.count == 0 %>
+		<span>该用户还没有发表帖子</span>
+		<% end -%>
+		<% @user_posts.each do |post| %>
+		<div class="post-line">
+			<div class="title">
+				<%= link_to post.title, post %>
+			</div>
+			<div class="info">
+				由<a href="/users/<%= post.user_id %>"><%= User.find(post.user_id).username %></a>发布于<%= post.created_at %> |
+				<% if signin? && @current_user.id == post.user_id %>
+				<%= link_to '编辑', edit_post_path(post) %> |
+				<%= link_to '删除', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+				<% end -%>
+			</div>   
+		</div>
+		<% end %>
+		<%= will_paginate @user_posts, :inner_window => 2 %>
+	</div>
+</div>
+
+<section id="comment">
+	<div class="comment-list">
+		<h1>最近发布的评论</h1>
+		<% if @user.comments.count == 0 %>
+		<span>该用户还没有发表评论</span>
+		<% end -%>
+		<% @user_comments.each do |comment| %>
+		<article>
+			<header>
+				<div class="left">
+					<a href="/users/<%= @user.id %>"><%= @user.username %></a>
+					<% if signin? && @user == current_user %>
+					<%= link_to '编辑', edit_comment_path(comment) %>
+					<% end -%>
+				</div>
+				<div class="right">
+					<span class="time">
+						由 <%= @user.username %> 创建于 <%= timeago_tag comment.created_at %> 之前
+					</span>
+				</div>
+			</header>
+			<%= raw markdown(comment.content) %>
+		</article>
+		<% end -%>
+	</div>
+</section>
+
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
