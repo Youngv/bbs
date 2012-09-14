@@ -405,11 +405,11 @@ body {
 		    margin: 0;
 		    width:870px;
 
-		    h1 {
+			h1 {
 				border-bottom: 1px solid #EEE;
 			    color: #333333;
 			    font-size: 16px;
-			    padding:5px;
+			    padding: 0 0 5px 5px;
 			}
 
 			span {
@@ -422,11 +422,11 @@ body {
 		    	display:block;
 		    	font-size:12px;
 		    	border-bottom:1px solid #dddddd;
-		    	padding:10px;
+		    	padding:7px;
 		    	margin:0;
 		    	
 		    	header {
-			    	height:10px;
+			    	height:8px;
 
 			    	.left {
 			    		float: left;
@@ -580,16 +580,17 @@ body {
 
 			h1 {
 				border-bottom: 1px solid #EEE;
-			    color: #999;
+			    color: #333333;
 			    font-size: 16px;
-			    padding: 5px;
-			}		    
+			    padding: 0 0 5px 5px;
+			}	    
 			
 			span {
 				margin:5px;
 				color:#999;
 				font-size:13px;
-			}			
+			}
+
 		    .post-line {
 		    	height:50px;
 		    	border-bottom: 1px solid #DDDDDD;
@@ -709,7 +710,6 @@ body {
 	#user-info {
 		height:100%;
 		width: 100%;
-		margin-top:50px;
 		margin-bottom:20px;
 
 		display:-moz-box;
@@ -732,7 +732,7 @@ body {
 				border-bottom: 1px solid #EEE;
 			    color: #333333;
 			    font-size: 16px;
-			    padding: 5px;
+			    padding: 0 0 5px 5px;
 			}
 
 			ul {
