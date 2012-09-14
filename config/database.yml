@@ -13,7 +13,7 @@ development:
 
 production:
   adapter: mysql2
-  database: bbs
+  database: bbs_production
   pool: 5
   username: root
   encoding: utf8
